@@ -1,45 +1,70 @@
 require("dotenv").config();
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+
 const truckInfoRoute = require("./routes/truckInfo");
 const pettyCashRoutes = require("./routes/pettyCashRoute");
 
-
-const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
 
-app.use(express.json()); // for parsing application/json    
+/* =========================
+   CORS CONFIG (IMPORTANT)
+========================= */
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://fleet-monitoring-system.vercel.app"
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow REST tools like Postman (no origin)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
+    credentials: true,
+  })
+);
+
+/* =========================
+   MIDDLEWARE
+========================= */
+app.use(express.json());
+
 app.use((req, res, next) => {
-    console.log(req.path, req.method);
-    next()
+  console.log(req.method, req.path);
+  next();
 });
 
-
-// ROUTES FIRST //get request
+/* =========================
+   ROUTES
+========================= */
 app.get("/", (req, res) => {
-    res.json({ message: "Hello World!" });
-
+  res.json({ message: "API is running" });
 });
 
-//routes
 app.use("/api/truck-info", truckInfoRoute);
-
-
 app.use("/api/petty-cash", pettyCashRoutes);
 
+/* =========================
+   DATABASE
+========================= */
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("MongoDB Error:", err));
 
-app.get("/api/activity", async (req, res) => {
-  const activity = await Activity.find().sort({ createdAt: -1 }).limit(3);
-  res.json(activity);
-});
+/* =========================
+   SERVER
+========================= */
+const PORT = process.env.PORT || 4000;
 
-//start db
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log("Connected to MongoDB", mongoose.connection.db.databaseName))
-    .catch((err) => console.error("Error connecting to MongoDB:", err));
-
-
-
-// START SERVER LAST
-app.listen(process.env.PORT, () => {
-    console.log("Server is running on port " + process.env.PORT);
+app.listen(PORT, () => {
+  console.log("Server running on port " + PORT);
 });
