@@ -19,6 +19,8 @@ const Home = () => {
 
         const cashJson = await cashRes.json();
         const truckJson = await truckRes.json();
+        console.log("CASH:", cashJson);
+console.log("TRUCK:", truckJson);
 
         if (cashRes.ok) setCashInfo(cashJson);
         if (truckRes.ok) setTruckInfo(truckJson);
@@ -39,7 +41,7 @@ const Home = () => {
       minimumFractionDigits: 0,
     }).format(value);
   };
-
+  
   // KPI TRcuks
 
   const totalTrucks = truckInfo.length;
