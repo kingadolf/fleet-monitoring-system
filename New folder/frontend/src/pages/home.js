@@ -13,8 +13,8 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const [cashRes, truckRes] = await Promise.all([
-          fetch("/api/petty-cash"),
-          fetch("/api/truck-info"),
+          fetch("https://fleet-monitoring-system-backend.onrender.com/api/petty-cash"),
+          fetch("https://fleet-monitoring-system-backend.onrender.com/api/truck-info"),
         ]);
 
         const cashJson = await cashRes.json();

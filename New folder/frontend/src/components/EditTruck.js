@@ -30,7 +30,7 @@ const EditTruckForm = ({ truck, onClose, onUpdated }) => {
     }
 
     try {
-      const res = await fetch(`/api/truck-info/${truck._id}`, {
+      const res = await fetch(`https://fleet-monitoring-system-backend.onrender.com/api/truck-info/${truck._id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

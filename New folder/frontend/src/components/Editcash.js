@@ -30,7 +30,7 @@ const EditCashForm = ({ cash, onClose, onUpdated }) => {
     }
 
     try {
-      const res = await fetch(`/api/petty-cash/${cash._id}`, {
+      const res = await fetch(`https://fleet-monitoring-system-backend.onrender.com/api/petty-cash/${cash._id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

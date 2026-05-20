@@ -11,7 +11,7 @@ const Truck = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const fetchData = async () => {
     try {
-      const response = await fetch("/api/truck-info");
+      const response = await fetch("https://fleet-monitoring-system-backend.onrender.com/api/truck-info");
       const json = await response.json();
 
       if (response.ok) {
@@ -33,7 +33,7 @@ const Truck = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this truck?")) return;
 
-    const res = await fetch(`/api/truck-info/${id}`, {
+    const res = await fetch(`https://fleet-monitoring-system-backend.onrender.com/api/truck-info/${id}`, {
       method: "DELETE",
     });
 

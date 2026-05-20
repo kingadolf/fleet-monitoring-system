@@ -67,33 +67,6 @@ const CashChart = ({ cashInfo }) => {
         
     const COLORS = ["#1aac83", "#2563eb", "#f97316", "#ef4444", "#7c3aed"];
 
-
-    //   const monthlyData = {};
-
-    //   cashInfo.forEach((item) => {
-    //      console.log(item.timestamp)
-    //     if (!item.timestamp) return;
-
-    //     const date = new Date(item.timestamp);
-    //     console.log(date);
-
-    //     const month = date.toLocaleString("default", {
-    //       month: "short",
-    //       year: "numeric",
-    //     });
-    //     console.log(month);
-
-    //     monthlyData[month] =
-    //       (monthlyData[month] || 0) + Number(item.amount || 0);
-    //   });
-    //   console.log(monthlyData)
-
-    //   const monthlyChartData = Object.keys(monthlyData).map((key) => ({
-    //     month: key,
-    //     amount: monthlyData[key],
-    //   }));
-
-    // If monthly data is not calculated, provide an empty array to avoid runtime errors
     // =========================
     // 2. Format Currency
     // =========================
