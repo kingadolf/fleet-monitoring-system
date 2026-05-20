@@ -1,0 +1,39 @@
+ /* side bar design */
+    /* side bar for fleet ops dashboard */
+    .sidebar{
+      position:fixed;
+      left:0px;
+      top:0px;
+      width:240px;
+      height:100vh;
+      background:#1e293b;
+      padding:20px;
+      color:white;
+    }
+    /* sidebar hearder "Fleet Ops" */
+    .sidebar h2{
+      margin-bottom:30px;
+      text-align:center;
+    }
+    /* sidebar items buttons box */
+    .menu{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    /* sidebar item button */
+    .menu button{
+      padding:14px;
+      border:none;
+      border-radius:10px;
+      background:#334155;
+      color:white;
+      cursor:pointer;
+      transition:0.3s;
+      font-size:15px;
+    }
+
+    .menu button:hover{
+      background:#2563eb;
+      transform:translateX(5px);
+    }
