@@ -11,16 +11,17 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const API = "https://fleet-monitoring-system-backend.onrender.com";
       try {
         const [cashRes, truckRes] = await Promise.all([
-          fetch("https://fleet-monitoring-system-backend.onrender.com/api/petty-cash"),
-          fetch("https://fleet-monitoring-system-backend.onrender.com/api/truck-info"),
+          fetch(`${API}/api/petty-cash`),
+          fetch(`${API}/api/truck-info`),
         ]);
 
         const cashJson = await cashRes.json();
         const truckJson = await truckRes.json();
         console.log("CASH:", cashJson);
-console.log("TRUCK:", truckJson);
+        console.log("TRUCK:", truckJson);
 
         if (cashRes.ok) setCashInfo(cashJson);
         if (truckRes.ok) setTruckInfo(truckJson);
@@ -41,7 +42,7 @@ console.log("TRUCK:", truckJson);
       minimumFractionDigits: 0,
     }).format(value);
   };
-  
+
   // KPI TRcuks
 
   const totalTrucks = truckInfo.length;

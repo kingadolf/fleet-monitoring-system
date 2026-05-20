@@ -8,9 +8,13 @@ const PettyCash = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const [editCash, setEditCash] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  
+  const API = "https://fleet-monitoring-system-backend.onrender.com";
   const fetchData = async () => {
+    
     try {
-      const response = await fetch("https://fleet-monitoring-system-backend.onrender.com/api/petty-cash");
+
+      const response = await fetch(`${API}/api/petty-cash`);
       const json = await response.json();
 
       if (response.ok) {
@@ -32,7 +36,7 @@ const PettyCash = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this cash entry?")) return;
 
-    const res = await fetch(`https://fleet-monitoring-system-backend.onrender.com/api/petty-cash/${id}`, {
+    const res = await fetch(`${API}/api/petty-cash/${id}`, {
       method: "DELETE",
     });
 

@@ -28,7 +28,8 @@ const AddTruckForm = ({ onClose, onAddSuccess }) => {
     }
 
     try {
-      const response = await fetch("https://fleet-monitoring-system-backend.onrender.com/api/truck-info", {
+      const API = "https://fleet-monitoring-system-backend.onrender.com";
+      const response = await fetch(`${API}/api/truck-info`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

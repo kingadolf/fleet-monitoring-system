@@ -28,9 +28,10 @@ const EditCashForm = ({ cash, onClose, onUpdated }) => {
       setMessage("Description is required");
       return;
     }
+    const API = "https://fleet-monitoring-system-backend.onrender.com";
 
     try {
-      const res = await fetch(`https://fleet-monitoring-system-backend.onrender.com/api/petty-cash/${cash._id}`, {
+      const res = await fetch(`${API}/api/petty-cash/${cash._id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

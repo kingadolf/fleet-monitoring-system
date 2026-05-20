@@ -28,7 +28,8 @@ const AddCashForm = ({ onClose, onAddSuccess }) => {
     }
 
     try {
-      const response = await fetch("https://fleet-monitoring-system-backend.onrender.com/api/petty-cash", {
+      const API = "https://fleet-monitoring-system-backend.onrender.com";
+      const response = await fetch(`${API}/api/petty-cash`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
